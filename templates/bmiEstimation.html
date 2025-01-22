@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Calorie-AI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{{ url_for('static',filename='mainFrame.css')}}" />
+	</head>
+	<body id="top">
+
+				<section id="BMIBody" data-video="{{ url_for('static',filename='images/background5')}}">
+					<div class="inner">
+						<header>
+							<h1>BMI Estimation</h1>
+						</header>
+					</div>
+				</section>
+
+				
+				<!-- Main -->
+				<footer id="maincalorie">
+					<div class="inner">
+						<h2>Make your choice. You can use the BMI Estimation function in the following two ways. </h2>
+						<div class="thumbnailsForBmi">
+							<div class="box">
+								<br></br>
+								<p>Input your gender, height and weight.</p>
+								<form action="{{ url_for('bodyMass') }}" method="post" enctype="multipart/form-data">
+									<td>
+										<p>Please select your gender: &nbsp;&nbsp;&nbsp;
+										<select id="gender" name="gender" style="width:35%; display:inline;"> 
+											<option style="color:black" value ="Male">Male</option>
+											<option style="color:black" value ="Female">Female</option>
+										</select>
+										</p>
+									</td>
+									<td>
+										<p>Please enter your height (cm): &nbsp;&nbsp;&nbsp;<input type="text" id="inputHeight" name="inputHeight" style="width:35%; display:inline;" value={{hh}}> </p>
+									</td>
+									<td>
+										<p>Please enter your weight (kg): &nbsp;&nbsp;&nbsp;<input type="text" id="inputWeight" name="inputWeight" style="width:35%; display:inline;" value={{ww}}> </p>
+									</td>
+									<input type="submit" value="Body Mass Estimation" onchange="visible()"/>
+								</form>
+								
+								<p id="estimatedBodyMass" style="visibility:block"> Estimated body mass: {{prediction}}</p>
+								<script>
+									if(document.getElementById("inputHeight").value=="" || document.getElementById("inputWeight").value=="") {
+										document.getElementById("estimatedBodyMass").innerText="";
+									}
+								</script>
+								
+								
+								<br></br>
+							</div>
+							
+							<div class="box">
+								<br></br>
+								<p>Upload your face image. One image only for one time.</p>
+								<form action="{{ url_for('bmiEstimationbyModel') }}" method="post" enctype="multipart/form-data" onsubmit="return check();">
+									<p>
+										<input type="file" name="faceurl" id="faceurl" value="Upload Image" onchange="preview(this)" accept="image/x-png, image/jpg, image/jpeg, image/gif">	
+									    &nbsp;&nbsp;&nbsp;<input type="submit" value="Confirm"/>
+									</p>
+								</form>
+								
+								<div id="container">
+
+
+								</div>
+								
+								<img id="faceImg" src="{{file_path}}" alt=" ">
+								<p id="label2"></p> 
+								<p id="label3"></p>
+								<p id="label4"></p>
+								<br></br>
+								
+								<script>
+									if(document.getElementById("faceImg").src != "http://127.0.0.1:2020/") {
+										document.getElementById("label2").innerText="Estimated height: {{pred_height}}m";
+										document.getElementById("label3").innerText="Estimated weight: {{pred_weight}}kg";
+										document.getElementById("label4").innerText="Estimated bmi: {{pred_bmi}}";
+									}
+								</script>
+								
+							</div>
+						</div>
+						<a href="/calorieBank"><input type="button" name="test" value="Back"/></a>
+					</div>
+				</footer>
+
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<p class="copyright">&copy; 2021 - Mbedtech</p>
+					</div>
+				</footer>
+
+		<!-- Scripts -->
+			<script>
+				function check() {
+					var files = document.getElementById("faceurl").value;
+					if(files == "") {
+						alert("Please upload an image!");  
+						return false;
+					}
+					else {
+						return true;
+					}
+				}
+			</script>
+			<script>
+			    var msg = "You can upload images in png, jpg or gif format.";
+			    var filter = {
+			        "jpeg": "/9j/4",
+			        "gif": "R0lGOD",
+			        "png": "iVBORw"
+			    };
+				
+			    function preview(file) {
+			        var container = document.getElementById("container");
+			        container.innerHTML = "";
+			        if (window.FileReader) {
+			            for (var index=0, f; f = file.files[index]; index++) {
+			
+			                var filereader = new FileReader();
+			                filereader.onload = function (event) {
+			                    var srcpath = event.target.result;
+			                    if (!validateImg(srcpath)) {
+			                        console.log("H5"+msg);
+			                    } else {
+			                        showPreviewImage(srcpath);
+			                    }
+			                };
+			                filereader.readAsDataURL(f);
+			            }
+			        } else {
+			            if (!/\.jpg$|\.png$|\.gif$/i.test(file.value)) {
+			                console.log("original "+msg);
+			            } else {
+			                showPreviewImage(file.value);
+			            }
+			        }
+					// document.getElementById("result").innerHTML=file.value;
+					document.getElementById("faceurl").value=file.value;
+					var imgBox = document.getElementById("faceImg");
+					imgBox.style.visibility="hidden";
+					
+					document.getElementById("label2").innerText="";
+					document.getElementById("label3").innerText="";
+					document.getElementById("label4").innerText="";
+					//document.getElementById("label2").style.visibility="hidden";
+					//document.getElementById("label3").style.visibility="hidden";
+					//document.getElementById("label4").style.visibility="hidden";
+					return file.value;
+			    }
+			
+			    function validateImg(data) {
+			        console.log(data);
+			        var pos = data.indexOf(",") + 1;
+			        for (var e in filter) {
+			            if (data.indexOf(filter[e]) === pos) {
+			                return e;
+			            }
+			        }
+			        return null;
+			    }
+			
+			    function showPreviewImage(src) {
+			        console.log(src);
+			        var img = document.createElement('img');
+			        img.src = src;
+			        img.style = "width:64px;height:auto;"
+			        container.appendChild(img);
+			    }
+			</script>
+
+			<script src="{{ url_for('static',filename='js/jquery.min.js')}}"></script>
+			<script src="{{ url_for('static',filename='js/jquery.scrolly.min.js')}}"></script>
+			
+			<script src="{{ url_for('static',filename='js/skel.min.js')}}"></script>
+			<script src="{{ url_for('static',filename='js/util.js')}}"></script>
+			<script src="{{ url_for('static',filename='js/main.js')}}"></script>
+
+			
+
+	</body>
+</html>

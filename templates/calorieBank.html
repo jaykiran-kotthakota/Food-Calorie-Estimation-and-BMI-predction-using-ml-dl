@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Calorie-AI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{{ url_for('static',filename='mainFrame.css')}}" />
+	</head>
+	<body id="top">
+
+				<section id="bodypart" data-video="{{ url_for('static',filename='images/diet')}}">
+					<div class="inner">
+						<header>
+							<h1>Calorie Detection using Image & User Inputs</h1>
+							<p>In this section, you can: <br> 1) Manage your calorie intake, by either uploading your query food image or manually selecting food you have taken;<br>2) Check your estimated BMI, by either uploading your face image or manual inputting your gender, height and weight.</p>
+						</header>
+					</div>
+				</section>
+
+				<script> 
+					var foodImageUrl = "";
+				</script>
+				
+				<!-- Main -->
+				<footer id="maincalorie">
+					<div class="inner">
+						<h2>Make Your Choice</h2>
+						<p>Click the respective box if you want to...</p>
+					</div>
+					<div class="thumbnails">
+						<div class="box">
+							<a href="/foodImageRecognition"  class="image fit"><img src="{{ url_for('static',filename='images/pic01.jpg')}}" alt=" "></a>
+							<div class="inner">
+								<h3>Image Recognition based Calorie Prediction</h3>
+								<p>Upload your query image. Then the estimated calories will be provided. </p>
+							</div>
+						</div>
+					
+						<div class="box">
+							<a href="/foodSelection" class="image fit"><img src="{{ url_for('static',filename='images/pic02.jpg')}}" alt="" /></a>
+							<div class="inner">
+								<h3>Calorie Estimation by Manual Selection</h3>
+								<p>You can select your food you have taken by making choices in the drop-down boxes. Then estimated calories and recommended sports will be shown. </p>
+							</div>
+						</div>
+						
+						<div class="box">
+							<a href="/bmiEstimation" class="image fit"><img src="{{ url_for('static',filename='images/pic02.jpg')}}" alt="" /></a>
+							<div class="inner">
+								<h3>BMI Estimation</h3>
+								<p>Upload a photo of your face. You will get your estimated BMI.</p>
+							</div>
+						</div>
+					</div>	
+					<a href="/"><input type="button" name="test" value="Back"/></a>				
+				</footer>
+
+
+			<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<p class="copyright">&copy; 2021 - Mbedtech</p>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{{ url_for('static',filename='js/jquery.min.js')}}"></script>
+			<script src="{{ url_for('static',filename='js/jquery.scrolly.min.js')}}"></script>
+			
+			<script src="{{ url_for('static',filename='js/skel.min.js')}}"></script>
+			<script src="{{ url_for('static',filename='js/util.js')}}"></script>
+			<script src="{{ url_for('static',filename='js/main.js')}}"></script>
+
+			
+
+	</body>
+</html>

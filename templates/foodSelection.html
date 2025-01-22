@@ -1,0 +1,780 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" href="{{ url_for('static',filename='mainFrame.css')}}" />
+		<title>Calorie-AI</title>
+		</head>
+	<body >
+		<section id="calculatorBody" data-video="{{ url_for('static',filename='images/calorie_control')}}">
+			<div class="inner">
+				<header>
+					<h1>Calorie Prediction based User Input</h1>
+					<p>The Food Calorie Calculator below allows you to choose from 101 kinds of food, and see their calories. Get started by entering your age and weight to get the daily calories needed, then select the food to eat to calculate the total calories intake, finally view how to consume the energy.</p>
+				</header>
+			</div>
+		</section>
+		
+		<div> 
+
+			</p>
+<p>	
+<body>
+	<div align="center">
+
+		
+<form id=this_form name=this_form>
+<div class=result id=result>
+	<p align="center" style="font-size:20px;">Please enter your age: <input class=border id=age onchange=calculateHeat() size=4 style="color:black; font-size:18px">&nbsp;&nbsp;&nbsp;  your weight: <input class=border id=weight onchange=calculateHeat() size=4 style="color:black; font-size:18px"> kg &nbsp;&nbsp;&nbsp;&nbsp;<input onclick=calculateHeat() type=button value=Calculate name=Submit> <br><br>Daily calories you need should be: <input class=border id=heat size=8 style="color:black; font-size:18px"> cal 
+	<p align="center" id="advice" style="font-size:23px; color:red"></p>
+</div>
+
+</div>
+<div>
+<div align="center">
+</p>
+<table align="center" cellSpacing=0 cellPadding=3 border=0 width="900" style="font-size: 17px;">
+	<tr>
+		<td>Salad</td>
+		<td>Cake</td>
+		<td>Sandwich</td>
+		<td>Soup</td>
+	</tr>
+<tr>
+	<td>
+		<select style="font-size: 17px" onchange=cal_volume1(this.form) name=kcal_item1> 
+			<option style="color:black;" value=0 selected>- - please choose - -</option> 
+			<option style="color:black;" value=97>beet salad 100g</option> 
+			<option style="color:black;" value=72>caesar salad 100g</option> 
+			<option style="color:black;" value=82>caprese salad 100g</option> 
+			<option style="color:black;" value=83>greek salad 100g</option> 
+			<option style="color:black;" value=68>seaweedsalad 100g</option> 
+		</select>
+	</td>
+	<td>
+		<select style="font-size: 17px" onchange=cal_volume4(this.form) name=kcal_item4> 
+			<option style="color:black;" value=0 selected>- - please choose - -</option> 
+			<option style="color:black;" value=345>carrot cake 100g</option> 
+			<option style="color:black;" value=349>cheesecake 100g</option> 
+			<option style="color:black;" value=397>chocolatecake 100g</option> 
+			<option style="color:black;" value=266>crab cake 100g</option> 
+			<option style="color:black;" value=240>cup cakes 100g</option> 
+			<option style="color:black;" value=250>pancakse 100g</option> 
+			<option style="color:black;" value=195>redvelvetcake 100g</option> 
+			<option style="color:black;" value=198>strawberry 100g</option>
+		</select>
+	</td>
+	<td>
+		<select style="font-size: 17px" onchange=cal_volume3(this.form) name=kcal_item3> 
+			<option style="color:black;" value=0 selected>- - please choose - -</option> 
+			<option style="color:black;" value=224>club sandwich 100g</option> 
+			<option style="color:black;" value=218>grilled cheese 100g</option> 
+			<option style="color:black;" value=222>lobster roll 100g</option> 
+			<option style="color:black;" value=220>pulled pork 100g</option>
+			<option style="color:black;" value=116>falafel 100g</option>
+			<option style="color:black;" value=277>croque madame 100g</option> 
+		</select>  
+	</td>
+	<td>
+		<select style="font-size: 17px" onchange=cal_volume18(this.form) name=kcal_item18> 
+			<option style="color:black;" value=0 selected>- - please choose - -</option>
+			<option style="color:black;" value=57>onion soup 100g</option> 
+			<option style="color:black;" value=16>hotsoursoup 100g</option> 
+			<option style="color:black;" value=20>miso soup 100g</option> 
+			<option style="color:black;" value=90>lobster bisque 100g</option> 
+			<option style="color:black;" value=90>clam chowder 100g</option> 
+		</select>
+	</td>
+</tr>
+<tr>
+	<td>Meat</td>
+	<td>Seafood</td>
+	<td>Dessert</td>
+	<td>Staple food</td>
+</tr>
+<tr>
+	<td>
+		<select style="font-size: 17px" onchange=cal_volume2(this.form) name=kcal_item2> 
+			<option style="color:black;" value=0 selected>- - please choose - -</option> 
+			<option style="color:black;" value=216>baby back ribs 100g</option> 
+			<option style="color:black;" value=117>beef carpaccio 100g</option> 
+			<option style="color:black;" value=125>beef tartare 100g</option> 
+			<option style="color:black;" value=197>chicken curry 100g</option> 
+			<option style="color:black;" value=194>chicken wings 100g</option> 
+			<option style="color:black;" value=95>filet mignon 100g</option> 
+			<option style="color:black;" value=250>hot dog 100g</option> 
+			<option style="color:black;" value=436>peking duck 100g</option> 
+			<option style="color:black;" value=278>pork chop 100g</option> 
+			<option style="color:black;" value=280>steak 100g</option> 
+			<option style="color:black;" value=280>prime rib 100g</option> 
+			<option style="color:black;" value=60>escargots 100g</option> 
+			<option style="color:black;" value=176>fish and chip 100g</option> 
+			<option style="color:black;" value=129>foie gras 100g</option>  
+		</select>
+	</td>
+	<td>
+		<select style="font-size: 17px" onchange=cal_volume5(this.form) name=kcal_item5> 
+			<option style="color:black;" value=0 selected>- - please choose - -</option> 
+			<option style="color:black;" value=160>ceviche 100g</option> 
+			<option style="color:black;" value=185>fried calamari 100g</option> 
+			<option style="color:black;" value=137>grilled salmon 100g</option> 
+			<option style="color:black;" value=122>mussels 100g</option> 
+			<option style="color:black;" value=57>oysters 100g</option> 
+			<option style="color:black;" value=44>sashimi 100g</option> 
+			<option style="color:black;" value=264>scallops 100g</option> 
+			<option style="color:black;" value=99>tuna tartare 100g</option> 
+			<option style="color:black;" value=59>shrimp and grits 100g</option> 
+		</select>
+	</td>
+	<td>
+		<select style="font-size: 17px" onchange=cal_volume10(this.form) name=kcal_item10> 
+			<option style="color:black;" value=0 selected>- - please choose - -</option> 
+			<option style="color:black;" value=368>apple pie 100g</option> 
+			<option style="color:black;" value=398>baklava 100g</option> 
+			<option style="color:black;" value=350>beignets 100g</option> 
+			<option style="color:black;" value=350>donuts 100g</option>
+			<option style="color:black;" value=185>frozen yogurt 100g</option> 
+			<option style="color:black;" value=127>ice cream 100g</option> 
+			<option style="color:black;" value=350>macarons 100g</option> 
+			<option style="color:black;" value=248>tiramisu 100g</option> 
+			<option style="color:black;" value=574>waffles 100g</option> 
+			<option style="color:black;" value=161>bread pudding 100g</option>   
+			<option style="color:black;" value=331>chocolate mousse 100g</option>   
+			<option style="color:black;" value=282>panna cotta 100g</option> 
+			<option style="color:black;" value=161>creme brulee 100g</option>
+		</select>
+	</td>
+	<td>
+		<select style="font-size: 17px" onchange=cal_volume17(this.form) name=kcal_item17> 
+			<option style="color:black;" value=0 selected>- - please choose - -</option> 
+			<option style="color:black;" value=173>bibimbap 100g</option> 
+			<option style="color:black;" value=124>dumplings 100g</option> 
+			<option style="color:black;" value=124>gyoza 100g</option> 
+			<option style="color:black;" value=317>lasagna 100g</option> 
+			<option style="color:black;" value=360>macaroni 100g</option>  
+			<option style="color:black;" value=221>ramen 100g</option> 
+			<option style="color:black;" value=264>ravioli 100g</option> 
+			<option style="color:black;" value=260>risotto 100g</option> 
+			<option style="color:black;" value=280>spring rools 100g</option> 
+			<option style="color:black;" value=200>sushi 100g</option>  
+			<option style="color:black;" value=389>bruschetta 100g</option>
+			<option style="color:black;" value=156>paella 100g</option>
+			<option style="color:black;" value=146>pho 100g</option> 
+			<option style="color:black;" value=188>fried rice 100g</option> 
+			<option style="color:black;" value=228>french toast 100g</option> 
+			<option style="color:black;" value=281>garlic bread 100g</option> 
+			<option style="color:black;" value=152>gnocchi 100g</option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td>Vegetable</td>
+	<td>Fast food</td>
+	<td>Pastry</td>
+	<td>breakfast</td>
+</tr>
+<tr>
+	<td>
+		<select style="font-size: 17px" onchange=cal_volume7(this.form) name=kcal_item7> 
+			<option style="color:black;" value=0 selected>- - please choose - -</option> 
+			<option style="color:black;" value=47>hummus 100g</option> 
+			<option style="color:black;" value=218>tacos 100g</option> 
+			<option style="color:black;" value=161>guacamole 100g</option> 
+			<option style="color:black;" value=365>nacho 100g</option>   
+			<option style="color:black;" value=476>onion ring 100g</option> 
+			<option style="color:black;" value=123>edamame 100g</option> 
+		</select>
+	</td>
+	<td>
+		<select style="font-size: 17px" onchange=cal_volume14(this.form) name=kcal_item14> 
+			<option style="color:black;" value=0 selected>- - please choose - -</option>
+			<option style="color:black;" value=298>french fries 100g</option> 
+			<option style="color:black;" value=456>hamburger 100g</option> 
+			<option style="color:black;" value=127>takoyaki 100g</option> 
+			<option style="color:black;" value=209>huevos rancheros 100g</option> 
+			<option style="color:black;" value=173>pad thai 100g</option> 
+			<option style="color:black;" value=461>poutine 100g</option> 
+			<option style="color:black;" value=181>samosa 100g</option> 
+			<option style="color:black;" value=161>spaghetti bolognese 100g</option>
+			<option style="color:black;" value=350>spaghetti carbonara 100g</option>
+			<option style="color:black;" value=235>pizza 100g</option>
+		</select>
+	</td>
+	<td>
+		<select style="font-size: 17px" onchange=cal_volume11(this.form) name=kcal_item11> 
+			<option style="color:black;" value=0 selected>- - please choose - -</option> 
+			<option style="color:black;" value=80>chicken quesadilla 100g</option> 
+			<option style="color:black;" value=300>cheese plate 100g</option> 
+			<option style="color:black;" value=316>cannoli 100g</option> 
+		</select>
+	</td>
+	<td>
+		<select style="font-size: 17px" onchange=cal_volume15(this.form) name=kcal_item15> 
+			<option style="color:black;" value=0 selected>- - please choose - -</option> 
+			<option style="color:black;" value=203>deviled eggs 100g</option> 
+			<option style="color:black;" value=359>eggs benedict 100g</option> 
+			<option style="color:black;" value=417>churros 100g</option> 
+			<option style="color:black;" value=316>breakfast burrito 100g</option> 
+			<option style="color:black;" value=209>omelette 100g</option>   
+		</select>
+	</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div align="center">
+<table>
+<tbody>
+<tr>
+<td align="center">
+	<p style="font-size: 20px;">You have chosen: &nbsp;&nbsp;&nbsp; <br>
+		<select align="center" style="font-size: 20px; width: 650px; height: 250px" size=6 name="selected_display"> 
+		</select>
+	</p>
+	<p style="font-size: 20px;">From the above food, calories sum : <input id="cal_volume" readOnly size=8 value=0 name="cal_volume" style="color:black; font-size:17px" > calories &nbsp;&nbsp;&nbsp; <input id=reset onclick=resetall(); type=button value="Recalculate">&nbsp;&nbsp;&nbsp; <input class=red id=jixu onclick=starting_yy(); type=button value="Sports Recommendation"></p></td></tr>
+<tr>
+	<td id="jixufenxi" align="center" style="font-size: 20px;"></td>
+	
+</tr>
+
+</table>
+<br>
+
+</div>
+	
+</form>
+<!-- Footer -->
+<footer id="footer">
+	<div class="inner">
+		<p class="copyright">&copy; 2021 - Mbedtech</p>
+	</div>
+</footer>
+</div>
+</div>
+
+<script type=text/javascript>
+<!--
+	var kcal=0;
+	var sitem="";
+	var heat="";
+	var total="";
+	var s_item=0;
+	function add_count(s_item){
+		kcal = kcal + parseInt(s_item);
+		return kcal;
+	}
+	function delete_item(form){
+		sitem=(form.selected_display.options[form.selected_display.selectedIndex].innerHTML);
+		heat=(form.selected_display.options[form.selected_display.selectedIndex].value);
+		if (form.selected_display.selectedIndex != 0){
+			form.cal_volume.value = delete_count(heat);
+			form.selected_display.options[form.selected_display.selectedIndex]=null;
+		}
+	}
+	function delete_count(s_item){
+		kcal = kcal - parseInt(s_item);
+		return kcal;
+	}
+	function cal_volume1(form){
+		sitem=(form.kcal_item1.options[form.kcal_item1.selectedIndex].innerHTML);
+		heat=(form.kcal_item1.options[form.kcal_item1.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length]=food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item1.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").value = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").value = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" caloreis more today. You need some sports to get rid of it.";
+		}
+	}
+	function cal_volume2(form){
+		sitem=(form.kcal_item2.options[form.kcal_item2.selectedIndex].innerHTML);
+		heat=(form.kcal_item2.options[form.kcal_item2.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length]=food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item2.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume3(form){
+		sitem=(form.kcal_item3.options[form.kcal_item3.selectedIndex].innerHTML);
+		heat=(form.kcal_item3.options[form.kcal_item3.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length]=food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item3.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume4(form){
+		sitem=(form.kcal_item4.options[form.kcal_item4.selectedIndex].innerHTML);
+		heat=(form.kcal_item4.options[form.kcal_item4.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length]=food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item4.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume5(form){
+		sitem = (form.kcal_item5.options[form.kcal_item5.selectedIndex].innerHTML);
+		heat=(form.kcal_item5.options[form.kcal_item5.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item5.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume6(form){
+		sitem = (form.kcal_item6.options[form.kcal_item6.selectedIndex].innerHTML);
+		heat=(form.kcal_item6.options[form.kcal_item6.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item6.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume7(form){
+		sitem = (form.kcal_item7.options[form.kcal_item7.selectedIndex].innerHTML);
+		heat=(form.kcal_item7.options[form.kcal_item7.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item7.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume8(form){
+		sitem = (form.kcal_item8.options[form.kcal_item8.selectedIndex].innerHTML);
+		heat=(form.kcal_item8.options[form.kcal_item8.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item8.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume9(form){
+		sitem = (form.kcal_item9.options[form.kcal_item9.selectedIndex].innerHTML);
+		heat=(form.kcal_item9.options[form.kcal_item9.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item9.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume10(form){
+		sitem = (form.kcal_item10.options[form.kcal_item10.selectedIndex].innerHTML);
+		heat=(form.kcal_item10.options[form.kcal_item10.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item10.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume11(form){
+		sitem = (form.kcal_item11.options[form.kcal_item11.selectedIndex].innerHTML);
+		heat=(form.kcal_item11.options[form.kcal_item11.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item11.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume12(form){
+		sitem = (form.kcal_item12.options[form.kcal_item12.selectedIndex].innerHTML);
+		heat=(form.kcal_item12.options[form.kcal_item12.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item12.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume13(form){
+		sitem = (form.kcal_item13.options[form.kcal_item13.selectedIndex].innerHTML);
+		heat=(form.kcal_item13.options[form.kcal_item13.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item13.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume14(form){
+		sitem = (form.kcal_item14.options[form.kcal_item14.selectedIndex].innerHTML);
+		heat=(form.kcal_item14.options[form.kcal_item14.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item14.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume15(form){
+		sitem = (form.kcal_item15.options[form.kcal_item15.selectedIndex].innerHTML);
+		heat=(form.kcal_item15.options[form.kcal_item15.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item15.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume16(form){
+		sitem = (form.kcal_item16.options[form.kcal_item16.selectedIndex].innerHTML);
+		heat=(form.kcal_item16.options[form.kcal_item16.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item16.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume17(form){
+		sitem = (form.kcal_item17.options[form.kcal_item17.selectedIndex].innerHTML);
+		heat=(form.kcal_item17.options[form.kcal_item17.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item17.selectedIndex=0;
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+	function cal_volume18(form){
+		sitem = (form.kcal_item18.options[form.kcal_item18.selectedIndex].innerHTML);
+		heat=(form.kcal_item18.options[form.kcal_item18.selectedIndex].value);
+		food = new Option(sitem,sitem);
+		form.selected_display.options[form.selected_display.length] = food;
+		form.cal_volume.value = add_count(heat);
+		form.kcal_item18.selectedIndex=0;
+		if(heatresult>0){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - HeatCalculator.getTotal())+" calories today. Please choose the food below.";
+		}
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+//-->
+</script>
+
+<script type=text/javascript>
+	function starting_yy(){
+		totalc=Number(document.getElementById('cal_volume').value);
+		document.getElementById("jixufenxi").innerHTML="<UL style=\"LINE-HEIGHT: 25px\">  <LI><u>play football</u>&nbsp;&nbsp;"+Math.round(totalc*0.1)+"mins</LI>  <LI>or <u>play tennis</u>&nbsp;&nbsp;"+Math.round(totalc*0.1)+"mins</LI>  <LI>or <u>play basketball</u>&nbsp;&nbsp;"+Math.round(totalc*0.12)+"mins</LI>  <LI>or <u>play badminton</u>&nbsp;&nbsp;"+Math.round(totalc*0.12)+"mins</LI>  <LI>or <u>swim</u>&nbsp;&nbsp;"+Math.round(totalc*0.14)+"mins</LI>  <LI>or <u> jog</u>&nbsp;&nbsp;"+Math.round(totalc*0.09)+"mins</LI>  <LI>or <u>fast run</u>&nbsp;&nbsp;"+Math.round(totalc*0.04)+"mins</LI>  <LI>or <u>do cleaning</u>&nbsp;&nbsp;"+Math.round(totalc*0.24)+"mins</LI>  <LI>or <u>jump rope</u>&nbsp;&nbsp;"+Math.round(totalc*0.07)+"mins</LI>  <LI>or <u>cycle</u>&nbsp;&nbsp;"+Math.round(totalc*0.29)+"mins</LI></UL>"
+	}
+	function resetall(){
+	//this_form.selected_display.options[form.selected_display.Index]="";
+		this_form.selected_display.innerHTML='';
+		this_form.cal_volume.value = "0";
+		kcal=0;
+		document.getElementById("heat").value="";
+		document.getElementById("advice").innerHTML = "";
+	}
+</script>
+
+<script>
+	function calculateHeat(){
+		var heatresult = 0;
+		if(document.getElementById("age").value>=18 && document.getElementById("age").value<=30 && document.getElementById("weight").value!=""){
+			heatresult = (document.getElementById("weight").value*0.062+2.036) * 240;
+		}
+		else if(document.getElementById("weight").value!="" && document.getElementById("age").value!="")
+		{
+			heatresult = (document.getElementById("weight").value*0.062+3.538) * 240;
+		}
+		if(heatresult>0&&heatresult>=Number(this_form.cal_volume.value)){
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You can still eat "+(parseInt(heatresult) - Number(this_form.cal_volume.value))+" calories today. Please choose the food below.";
+		}
+		else if (heatresult>0&&heatresult<Number(this_form.cal_volume.value))
+		{
+			document.getElementById("heat").value=parseInt(heatresult);
+			document.getElementById("advice").innerHTML = "You have consumed "+(Number(this_form.cal_volume.value) - parseInt(heatresult))+" calories today. You need more exercises.";
+		}
+	}
+</script>
+</td>
+			</tr>
+		</table>
+	</div>
+	
+			
+			
+			
+			</body></html>

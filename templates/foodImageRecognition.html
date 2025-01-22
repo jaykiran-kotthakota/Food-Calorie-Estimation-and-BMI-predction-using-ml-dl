@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Calorie-AI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{{ url_for('static',filename='mainFrame.css')}}" />
+	</head>
+	<body id="top">
+
+				<section id="FIRBody" data-video="{{ url_for('static',filename='images/background1')}}">
+					<div class="inner">
+						<header>
+							<h1>Image Recognition based Calorie Prediction</h1>
+						</header>
+					</div>
+				</section>
+
+				<script> 
+					var foodImageUrl = "";
+				</script>
+				
+				<!-- Main -->
+				<footer id="maincalorie">
+					<div class="inner">
+						<p>Upload your food image. One image only for one time.</p>
+						<form action="{{ url_for('foodImageRecognitionbyModel') }}" method="post" enctype="multipart/form-data" onsubmit="return check();">
+							<p>
+								<input type="file" name="foodurl" id="foodurl" value="Upload Image" onchange="preview(this)" accept="image/x-png, image/jpg, image/jpeg, image/gif">	
+							    &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Confirm"/>
+							</p>
+						</form>
+						<div id="container">
+						</div>
+						
+						<img id="foodImg" src="{{file_path}}" alt=" ">
+						<br><br>
+						<p id="label1"></p>
+						<p id="label2"></p>
+						<script>
+							if(document.getElementById("foodImg").src != "http://127.0.0.1:2020/") {
+								document.getElementById("label1").innerText="You just uploaded the image of: {{data}}."
+								document.getElementById("label2").innerText="Estimated Calorie: {{pred_calorie}} Cal"
+							}
+						</script>
+						<!-- <p id="label1"> You just uploaded the image of: {{data}}<br> Estimated Calorie: {{pred_calorie}} Cal</p> -->
+
+					</div>
+					<a href="/calorieBank"><input type="button" name="back" value="Back"/></a>	
+				</footer>
+
+
+			<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<p class="copyright">&copy; 2021 - Mbedtech</p>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+
+			<script>
+				function check() {
+					var files = document.getElementById("foodurl").value;
+					if(files == "") {
+						alert("Please upload an image!");  
+						return false;
+					}
+					else {
+						return true;
+					}
+				}
+			</script>
+			
+			
+			<script>
+			    var msg = "You can upload images in png, jpg or gif format.";
+			    var filter = {
+			        "jpeg": "/9j/4",
+			        "gif": "R0lGOD",
+			        "png": "iVBORw"
+			    };
+			    function preview(file) {
+			        var container = document.getElementById("container");
+			        container.innerHTML = "";
+			        if (window.FileReader) {
+			            for (var index=0, f; f = file.files[index]; index++) {
+			
+			                var filereader = new FileReader();
+			                filereader.onload = function (event) {
+			                    var srcpath = event.target.result;
+			                    if (!validateImg(srcpath)) {
+			                        console.log("H5"+msg);
+			                    } else {
+			                        showPreviewImage(srcpath);
+			                    }
+			                };
+			                filereader.readAsDataURL(f);
+			            }
+			        } else {
+			            if (!/\.jpg$|\.png$|\.gif$/i.test(file.value)) {
+			                console.log("original "+msg);
+			            } else {
+			                showPreviewImage(file.value);
+			            }
+			        }
+					// document.getElementById("result").innerHTML=file.value;
+					document.getElementById("foodurl").value=file.value;
+					foodImageUrl = file.value;
+					
+					document.getElementById("foodImg").src="";
+					document.getElementById("label1").innerText="";
+					document.getElementById("label2").innerText="";
+					//document.getElementById("label2").innerText="";
+					//document.getElementById("label1").style.visibility="hidden";
+					//document.getElementById("label2").style.visibility="hidden";
+					return file.value;
+			    }
+			
+			    function validateImg(data) {
+			        console.log(data);
+			        var pos = data.indexOf(",") + 1;
+			        for (var e in filter) {
+			            if (data.indexOf(filter[e]) === pos) {
+			                return e;
+			            }
+			        }
+			        return null;
+			    }
+			
+			    function showPreviewImage(src) {
+			        console.log(src);
+			
+			
+			        var img = document.createElement('img');
+			        img.src = src;
+			        img.style = "width:64px;height:auto;"
+			        container.appendChild(img);
+			    }
+			</script>
+
+			<script src="{{ url_for('static',filename='js/jquery.min.js')}}"></script>
+			<script src="{{ url_for('static',filename='js/jquery.scrolly.min.js')}}"></script>
+			
+			<script src="{{ url_for('static',filename='js/skel.min.js')}}"></script>
+			<script src="{{ url_for('static',filename='js/util.js')}}"></script>
+			<script src="{{ url_for('static',filename='js/main.js')}}"></script>
+
+			
+
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Calorie-AI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{{ url_for('static',filename='mainFrame.css')}}" />
+	</head>
+	<body id="top">
+
+			<!-- Banner -->
+			<!--
+				To use a video as your background, set data-video to the name of your video without
+				its extension (eg. images/banner). Your video must be available in both .mp4 and .webm
+				formats to work correctly.
+			-->
+				<section id="banner" data-video="{{ url_for('static',filename='images/banner')}}">
+					<div class="inner">
+						<header>
+							<h1>Calorie-AI</h1>
+							<p>Diet is the basic condition for human beings to maintain life. To make people live healthy, happy, energetic, and wise, they must not only be satisfied with a full stomach, but also must consider the reasonable allocation of diet to ensure the intake of various nutrients required by the human body.</p>
+						
+						
+						<script language="javascript">
+						    function exec1(command) {
+						 	  var ws = new ActiveXObject("WScript.Shell");
+						      ws.run(command);
+						    }
+					    </script>
+						
+						</header>
+					</div>
+				</section>
+
+			<!-- Main -->
+				<div id="maincalorie">
+					<div class="inner">
+					<!-- Boxes -->
+						<div class="thumbnails">
+
+							<div class="box">
+								<a href="/calorieBank"  class="image fit"><img src="{{ url_for('static',filename='images/download.jpeg')}}" alt=" "></a>
+								<div class="inner">
+									<h3>Calorie AI</h3>
+									<p>In this section, you can manage your calorie intake and check your estimated BMI, by either uploading images or manual input.</p>
+								</div>
+							</div>
+						
+							
+						<!-- <input type="button" value="Execute python" onclick="exec1('D:\\anaconda3\\python.exe -i E:/YourDietician/MessageBox.py')" /> -->
+						</div>
+
+					</div>
+					
+				</div>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<p class="copyright">&copy; 2021 - Mbedtech</p>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{{ url_for('static',filename='js/jquery.min.js')}}"></script>
+			<script src="{{ url_for('static',filename='js/jquery.scrolly.min.js')}}"></script>
+			
+			<script src="{{ url_for('static',filename='js/skel.min.js')}}"></script>
+			<script src="{{ url_for('static',filename='js/util.js')}}"></script>
+			<script src="{{ url_for('static',filename='js/main.js')}}"></script>
+
+	</body>
+</html>
