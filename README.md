@@ -57,6 +57,9 @@ This project is developed using **Python** and the **Django framework**, focusin
 **Jaykiran Kotthakota**
 
 Connect with me:  
-- [🔗 LinkedIn](https://www.linkedin.com/in/jaykiran-kotthakota-787525154)  
-- [💻 GitHub](https://github.com/jaykiran-kotthakota)  
+
+<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=jaykiran-kotthakota&show_icons=true&locale=en&layout=compact" alt="jaykiran-kotthakota" /></p>
+
+<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=jaykiran-kotthakota&show_icons=true&locale=en" alt="jaykiran-kotthakota" /></p>
+ 
 - [📸 Instagram](https://www.instagram.com/jaykiran_kotthakota)  
